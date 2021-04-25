@@ -1,5 +1,17 @@
+const quizzesService = require('../services/quizzes/quizzes-service')
+module.exports = function (app) {
+    app.get('/api/quizzes', (req, res) =>
+        quizzesService.findAllQuizzes()
+            .then(allQuizzes => res.json(allQuizzes)))
+    app.get('/api/quizzes/:quizId', (req, res) =>
+        quizzesService.findQuizById(req.params['quizId'])
+            .then(quiz => res.json(quiz)))
+}
+
+
 // Controllers deal with all things HTTP
 // sits between two worlds: the HTTP world and the JavaScript Object world
+/*
 module.exports = (app) => {
     const quizzesService = require('../services/quizzes/quizzes-service')
 
@@ -18,3 +30,4 @@ module.exports = (app) => {
     app.get('/api/quizzes', findAllQuizzes)
     app.get('/api/quizzes/:quizId', findQuizById)
 }
+ */
