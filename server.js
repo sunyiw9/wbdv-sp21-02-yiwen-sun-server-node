@@ -8,7 +8,8 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
 const mongoose = require('mongoose');
-mongoose.connect('mongodb+srv://wbdv:5610@cluster0.hcaiv.mongodb.net/whiteboard?retryWrites=true&w=majority',
+const url = process.env.MONGODB_URI;
+mongoose.connect(url,
     {useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false});
 // Configures CORS
 app.use(function (req, res, next) {
